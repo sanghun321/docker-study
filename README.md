@@ -1,10 +1,10 @@
-# 🚀 Codyssey Mission 1: Developer Workstation Setup
+#  Codyssey Mission 1: Developer Workstation Setup
 
 > 개발자 워크스테이션 환경 구축 미션 수행 결과 보고서입니다. 본문서는 Linux CLI 제어, 권한 관리, Docker 컨테이너 및 볼륨/마운트 실습, 그리고 Git 버전 관리 과정을 기록한 기술 문서입니다.
 
 ---
 
-## 📌 1. 프로젝트 개요 (Overview)
+##  1. 프로젝트 개요 (Overview)
 - **미션 목표:** 
   - 로컬 및 클라우드(Codespaces) 환경에서 재현 가능한 개발 워크스테이션 구축
   - Linux CLI 및 파일 권한 제어 원리 체득
@@ -17,7 +17,7 @@
 
 ---
 
-## ✅ 2. 수행 항목 체크리스트 (Checklist)
+##  2. 수행 항목 체크리스트 (Checklist)
 - [x] 터미널 기본 조작 (현재 위치 확인, 숨김 파일 포함 목록, 이동, 생성, 복사, 삭제 등)
 - [x] 권한 변경 실습 (파일 `644`, 디렉토리 `755` 권한 변경 전/후 비교)
 - [x] Docker 설치 및 데몬 상태 점검 (`docker --version`, `docker info`)
@@ -31,7 +31,7 @@
 
 ---
 
-## 🛠️ 3. 상세 수행 내용 및 검증 로그
+##  3. 상세 수행 내용 및 검증 로그
 
 ### ① Git 설정 및 GitHub 연동
 - **Git 사용자 설정 및 확인 (`git config --list`)**
@@ -198,28 +198,28 @@ ls -ld sample_dir
 
 ## 5. Docker 기본 운영 명령어 수행
 
-- **이미지 및 컨테이너 상태 확인**
-  ```bash
-  docker images
-  docker ps
-  docker ps -a
-  ```
-  출력 결과 :
-  ```text
-  @sanghun321 ~/workspaces/docker-study (main) $ docker images
-  REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
-  hello-world   latest    c567b231f656   2 weeks ago     9.49kB
+-**이미지 및 컨테이너 상태 확인**
+```bash
+docker images
+docker ps
+docker ps -a
+```
+출력 결과 :
+```text
+@sanghun321 ~/workspaces/docker-study (main) $ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hello-world   latest    c567b231f656   2 weeks ago     9.49kB
 
-  @sanghun321 ~/workspaces/docker-study (main) $ docker ps
-  CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+@sanghun321 ~/workspaces/docker-study (main) $ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
-  @sanghun321 ~/workspaces/docker-study (main) $ docker ps -a
-  CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
-  9cee53326202   hello-world   "/hello"   9 minutes ago    Exited (0) 9 minutes ago              wizardly_mclaren
-  d2635bee269b   hello-world   "/hello"   9 minutes ago    Exited (0) 9 minutes ago              suspicious_fermat
-  ```
+@sanghun321 ~/workspaces/docker-study (main) $ docker ps -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+9cee53326202   hello-world   "/hello"   9 minutes ago    Exited (0) 9 minutes ago              wizardly_mclaren
+d2635bee269b   hello-world   "/hello"   9 minutes ago    Exited (0) 9 minutes ago              suspicious_fermat
+```
 
-- **컨테이너 운영 정보 확인 (로그 및 리소스)**
+-**컨테이너 운영 정보 확인 (로그 및 리소스)**
 
 출력 결과:
 ```text
@@ -298,9 +298,9 @@ d2635bee269b   hello-world   "/hello"   22 seconds ago   Exited (0) 21 seconds a
   exit
   ```
 
-  출력 결과:
-  ```text
-  @sanghun321 ~/workspaces/docker-study (main) $ docker run -it ubuntu bash
+출력 결과:
+```text
+@sanghun321 ~/workspaces/docker-study (main) $ docker run -it ubuntu bash
 Unable to find image 'ubuntu:latest' locally
 latest: Pulling from library/ubuntu
 f3f25b84a7d7: Pull complete 
@@ -324,12 +324,105 @@ exit
 @sanghun321 ~/workspaces/docker-study (main) $
 ```
 
-- **컨테이너 종료 및 유지 방식 (`attach` vs `exec`) 비교 정리**
-  - **`docker run -it` / `docker attach`**: 
-    - 컨테이너 내부의 주 프로세스(PID 1, 예: `bash`)와 직접 연결(Attach)됩니다.
-    - 터미널에서 `exit` 명령어를 입력하거나 내부 프로세스가 종료되면, 컨테이너의 주 프로세스가 끝나면서 컨테이너 상태가 정지(`Exited`) 상태로 전환됩니다.
-  - **`docker exec`**: 
-    - 이미 실행 중인 컨테이너 내부에 새로운 독립적인 프로세스를 생성하여 접속합니다.
-    - 접속을 종료(`exit`)하더라도 주 프로세스는 유지되므로, 컨테이너는 중지되지 않고 계속해서 실행 상태(`Running`)로 유지됩니다.
+**컨테이너 종료 및 유지 방식 (`attach` vs `exec`) 비교 정리**
+- **`docker run -it` / `docker attach`**: 
+- 컨테이너 내부의 주 프로세스(PID 1, 예: `bash`)와 직접 연결(Attach)됩니다.
+- 터미널에서 `exit` 명령어를 입력하거나 내부 프로세스가 종료되면, 컨테이너의 주 프로세스가 끝나면서 컨테이너 상태가 정지(`Exited`) 상태로 전환됩니다.
+- **`docker exec`**: 
+- 이미 실행 중인 컨테이너 내부에 새로운 독립적인 프로세스를 생성하여 접속합니다.
+- 접속을 종료(`exit`)하더라도 주 프로세스는 유지되므로, 컨테이너는 중지되지 않고 계속해서 실행 상태(`Running`)로 유지됩니다.
 
-    
+## 7. 기존 Dockerfile 기반 커스텀 이미지 제작
+
+- **선택한 기존 베이스 이미지**
+  - `nginx:latest` (웹 서버 베이스 이미지 활용 방식)
+
+- **적용한 커스텀 포인트 및 목적**
+  - **정적 콘텐츠 교체 (`RUN echo ...`)**: NGINX 웹 서버의 기본 환영 페이지(`index.html`) 경로(`usr/share/nginx/html/index.html`)에 커스텀 HTML 문구(`Hello Codyssey! Custom NGINX Image Success!`)를 주입하여 웹 브라우저 접속 시 변경된 페이지가 출력되도록 설정
+
+- **빌드 및 실행 명령어와 핵심 결과**
+  ```text
+  # 1. 커스텀 이미지 빌드
+  docker build -t my-nginx-app .
+
+  # 2. 빌드된 커스텀 이미지 컨테이너 실행 (포트 8080 매핑)
+  docker run -d -p 8080:80 --name my-web-container my-nginx-app
+  ```
+
+  **출력 결과** 
+  ```text
+  [+] Building 12.7s (7/7) FINISHED                        docker:default
+  => naming to docker.io/library/my-nginx-app:latest                       0.0s
+  34fbb2e572a1f748e04bfc956cb4d8136712cfea0bb5668b525fd67fbda9e8f8
+  ```
+
+## 8. 포트 매핑 및 접속 증거
+
+- **포트 매핑 설정 내용 (`-p 8080:80`)**
+  - 호스트(Codespaces 환경)의 `8080` 포트로 들어오는 요청을 컨테이너 내부의 NGINX 웹 서버 포트인 `80` 포트로 전달하도록 매핑하여 실행함
+
+- **접속 테스트 명령어 및 응답 결과 (`curl`)**
+  curl http://localhost:8080
+
+  > **출력 응답 (증거):**
+  > <h1>Hello Codyssey! Custom NGINX Image Success!</h1>
+
+## 9. Docker 볼륨 영속성 검증
+
+이 단계의 핵심은 "컨테이너를 삭제했다가 다시 만들어도, 도커 볼륨(Volume)을 사용하면 데이터가 안전하게 유지된다(영속성)"는 것을 직접 실습하고 증명하는 것
+
+- **도커 볼륨 생성 및 컨테이너 연결**
+  - 도커 볼륨(`my-vol`)을 생성하고, `-v my-vol:/app/data` 옵션을 통해 컨테이너 내부 경로와 호스트의 독립된 볼륨 스토리지를 연결함[cite: 10]
+
+- **검증 절차 및 명령어 (생성 -> 파일 작성 -> 삭제 -> 재연결)**
+
+  **1. 볼륨 생성**
+  ```text
+  docker volume create my-vol
+  ```
+
+  **2. 볼륨을 연결한 첫 번째 컨테이너 실행 및 테스트 파일 작성**
+  ```text
+  docker run -d --name test-container -v my-vol:/app/data nginx:latest
+  docker exec -it test-container sh -c 'echo "Hello Docker Volume Persistence" > /app/data/test.txt'
+  ```
+
+  **3. 컨테이너 삭제 (컨테이너는 사라지지만 볼륨 데이터는 안전하게 보존됨)**
+  ```text
+  docker stop test-container
+  docker rm test-container
+  ```
+
+  **4. 동일한 볼륨을 연결하여 새 컨테이너 실행 및 데이터 생존 확인**
+  ```text
+  docker run -d --name new-container -v my-vol:/app/data nginx:latest
+  docker exec -it new-container cat /app/data/test.txt
+  ```
+
+  > **출력 결과 (데이터 유지 증거):**
+  > Hello Docker Volume Persistence
+
+  ## 10. Git 설정 및 GitHub 연동
+
+- **Git 사용자 정보 및 기본 브랜치 설정**
+  - 로컬 환경의 커밋 주체 식별을 위한 이름(`user.name`)과 이메일(`user.email`), 기본 브랜치(`init.defaultBranch`) 설정을 완료함
+
+- **Git 설정 확인 명령어 및 결과 (`git config --list`)**
+  git config --list
+
+  > **출력 결과 (설정 증거):**
+  > user.name=sanghun321
+  > user.email=sanghoon11205@gmail.com
+  > init.defaultBranch=main
+
+- **GitHub 저장소 연동 상태**
+  - GitHub Codespaces 환경을 통해 원격 저장소와 정상적으로 인증 및 연동됨
+
+  ## 11. 보안 및 개인정보 보호
+
+- **민감 정보 노출 방지 및 마스킹 처리**
+  - 기술 문서, 로그, 터미널 출력 결과 및 캡처 화면 내에 개인 API 토큰, 비밀번호, 개인키(Private Key), 인증 코드 등 민감한 보안 정보가 포함되지 않았음을 철저히 검수함
+  - 외부 저장소(GitHub) 업로드 전 불필요한 인증 정보나 개인 식별 정보가 노출되었는지 최종 확인 완료
+
+- **보안 조치 수칙 준수**
+  - 만약 민감 정보가 실수로 포함되거나 노출될 경우, 즉시 커밋 히스토리에서 제거(`git reset` 또는 `git filter-repo`)하고 관련 인증 키를 즉각 폐기 및 재발급(Revoke & Regenerate)할 수 있도록 보안 가이드라인 숙지
