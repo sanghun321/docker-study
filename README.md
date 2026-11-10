@@ -367,6 +367,8 @@ exit
   > **출력 응답 (증거):**
   > <h1>Hello Codyssey! Custom NGINX Image Success!</h1>
 
+  ![브라우저 접속 증거](./Port.png)
+
 ## 9. Docker 볼륨 영속성 검증
 
 이 단계의 핵심은 "컨테이너를 삭제했다가 다시 만들어도, 도커 볼륨(Volume)을 사용하면 데이터가 안전하게 유지된다(영속성)"는 것을 직접 실습하고 증명하는 것
